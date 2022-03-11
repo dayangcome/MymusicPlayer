@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>大洋音乐</title>
+		<link rel="stylesheet" type="text/css" href="mymusic.css"/>
+	</head>
+	<body>
+		<div id="app">
+		<div id="player">
+			<div class="upper"><div id="font">大洋音乐</div>
+			<div id="in">
+				<input type="text" @keyup.enter="searchmusic" v-model="query" id="input">
+			<button id="submit" @click="searchmusic" placeholder="请输入你要搜索的内容">搜索</button>
+			</div>
+			</div>
+			<div class="medium">
+				<div class="mleft">
+					<ul>
+						<li v-for="song in musiclist">
+							<a href="javascipt:void(0)"><img src="picture/播放.png" class="icon" @click="play(song.id)"></a>
+							<strong>{{song.name}}</strong>
+							<a href="javascipt:void(0)"><img src="picture/24gf-playSquare.png" v-if="song.mvid!=0" class="icon" @click="playmv(song.mvid)"></a>
+							</li>
+					</ul>
+				</div>
+				<div class="mmedi">
+					<img src="picture/black-paly.png" alt="" id="paly" v-show="show">
+					<div class="blackcircle">
+						<img :src="cover" alt="." id="songcover">
+					</div>
+				</div>
+				<div class="mright">
+					<div class="center">
+						<strong v-show="show" style="font-size: 25px;">热门评论</strong>
+						</div>
+					<ul>
+						<li v-for="item in hotcom">
+						<img :src="item.user.avatarUrl" alt="" id="userurl">
+						<strong>{{item.user.nickname}}</strong>
+						<br><span style="color:rgb(14,16,16)">{{item.content}}</span><br>
+						<span id="time">{{item.timeStr}}</span>
+						<br></li>
+					</ul>
+				</div>
+			</div>
+			<div class="bottom">
+				<audio id="audio" :src="musicurl" controls="controls" autoplay="autoplay">
+					当前浏览器不支持audio
+				</audio>
+			</div>
+		</div>
+		<div v-if="isshow" id="mask" @click="pauseshow"> <video id="mv"  :src="mvurl" controls="controls"> </video></div>
+		<div id="last">声明：这是我在学Vue的时候做的的练手项目，2022年3月11号完成，感谢支持，仅供学习参考，不做任何商用!<br>
+		Statement: This is a hand training project I did while learning Vue. It was completed on March 11, 2022.<br> Thank you for your support! 
+		For learning reference only, do not do any business. <br>author:&nbsp;dayang <br>email:&nbsp;1042867610@qq.com</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<script type="text/javascript" src="mymusic.js"></script>
+	</body>
+</html>
