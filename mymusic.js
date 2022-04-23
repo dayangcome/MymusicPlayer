@@ -4,7 +4,7 @@ var app=new Vue({
 		query:"",
 		musiclist:[],
 		musicurl:"",
-		cover:"",
+		cover:"picture/default.png",
 		hotcom:[],
 		show:false,
 		mvurl:"",
